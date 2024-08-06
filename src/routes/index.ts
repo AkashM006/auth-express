@@ -1,5 +1,5 @@
 import express from "express";
-import UserModel from "../db/schema/users";
+import UserModel from "../db/schema/userSchema";
 
 const app = express.Router();
 

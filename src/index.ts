@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import appRouter from "./routes/index";
-import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import session from "express-session";
+import passport from "passport";
 import mongoConnectionPromise from "./db/config";
 
 dotenv.config();
@@ -29,6 +29,11 @@ app.use(
     },
   })
 );
+
+import "./utils/passport";
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(appRouter);
 
