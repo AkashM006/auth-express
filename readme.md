@@ -7,7 +7,4 @@
 Below are the `.env` variables required by the project:
 
 `PORT=3000`
-`MONGO_USER`
-`MONGO_PASSWORD`
-`MONGO_HOST`
-`MONGO_DB`
+`MONGO_URI`
