@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const registerRequestSchema = z.object({
+const registerRequestBodySchema = z.object({
   email: z
     .string({
       required_error: "Email is required",
@@ -31,4 +31,8 @@ const registerRequestSchema = z.object({
     .max(64, "Password cannot be longer than 64 characters"),
 });
 
-export default registerRequestSchema;
+export type RegisterRequestBodySchema = z.infer<
+  typeof registerRequestBodySchema
+>;
+
+export default registerRequestBodySchema;

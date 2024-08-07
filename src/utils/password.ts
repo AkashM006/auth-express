@@ -6,7 +6,7 @@ dotenv.config();
 const saltRounds = process.env["SALT_ROUNDS"] ?? 5;
 
 const generateHash = async (password: string): Promise<string> => {
-  const result = await bcrypt.hash(password, saltRounds);
+  const result = await bcrypt.hash(password, +saltRounds);
 
   return result;
 };

@@ -12,12 +12,13 @@ const port = process.env["PORT"];
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
     secret: process.env["SESSION_SECRET"] || "",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({
       clientPromise: mongoConnectionPromise,
       dbName: "app",
@@ -30,7 +31,7 @@ app.use(
   })
 );
 
-import "./utils/passport";
+import "./utils/middlewares/passport";
 
 app.use(passport.initialize());
 app.use(passport.session());

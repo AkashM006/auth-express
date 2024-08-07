@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
-import { failureHandler } from "./successHandler";
+import { failureHandler } from "../successHandler";
 
 const validator = (
   validationSchema: z.AnyZodObject

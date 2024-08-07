@@ -1,7 +1,9 @@
 import passport from "passport";
 import PassportLocal from "passport-local";
-import UserModel from "../db/schema/userSchema";
-import { verifyHash } from "./password";
+import UserModel from "../../db/schema/userSchema";
+import { verifyHash } from "../password";
+
+console.log("Loaded");
 
 type User = {
   _id?: number;
@@ -16,14 +18,22 @@ const verifyCallback: PassportLocal.VerifyFunction = async (
   password,
   done
 ) => {
+  console.log("Verify callback");
   try {
     const user = await UserModel.findOne({ username });
-    if (!user) return done(null, false);
-
-    if (!verifyHash(password, user.hash!)) return done(null, false);
-
+    if (!user) {
+      console.log("no user");
+      return done(null, false);
+    }
+    const isValidPassword = await verifyHash(password, user.hash);
+    if (!isValidPassword) {
+      console.log("Here");
+      return done(null, false);
+    }
+    console.log("Done");
     return done(null, user);
   } catch (err) {
+    console.log("Error: ", err);
     return done(err);
   }
 };
