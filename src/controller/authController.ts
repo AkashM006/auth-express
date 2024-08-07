@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
+import { successHandler } from "../utils/successHandler";
 
-const registerController = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+const registerController = async (req: Request, res: Response) => {
   const { email, name, password } = req.body;
 
-  try {
-  } catch (error) {}
+  successHandler(res, "Successfully created user");
 };
 
 export { registerController };
